@@ -1,7 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { KanbanBoard } from './kanbanBoard/kanbanBoard.component';
 //Angular Router Module
@@ -17,6 +17,7 @@ import {RouterTestingModule} from '@angular/router/testing';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterTestingModule,
     RouterModule.forRoot([
       { path:'', component: KanbanBoard }

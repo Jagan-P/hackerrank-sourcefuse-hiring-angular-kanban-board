@@ -115,6 +115,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "kanbanBoard"
+    }
+  },
+  "defaultProject": "kanbanBoard",
+  "cli": {
+    "analytics": "a39ccd95-fd4c-4bff-a38a-cf5fc5e9e7db"
+  }
 }
