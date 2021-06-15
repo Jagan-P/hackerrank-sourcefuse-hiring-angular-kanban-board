@@ -9,6 +9,8 @@ export class KanbanBoard implements OnInit {
   tasks: Task[];
   stagesNames: string[];
   stagesTasks: any[]; //Only used for rendering purpose
+  taskNameInput: string = '';
+  taskNames;
 
   ngOnInit() {
     // Each task is uniquely identified by its name. 
@@ -17,6 +19,7 @@ export class KanbanBoard implements OnInit {
       { name: '0', stage: 0 },
       { name: '1', stage: 0 },
     ];
+    this.taskNames = ['0', '1'];
     this.stagesNames = ['Backlog', 'To Do', 'Ongoing', 'Done'];
     this.configureTasksForRendering();
   }
@@ -30,6 +33,45 @@ export class KanbanBoard implements OnInit {
     for (let task of this.tasks) {
       const stageId = task.stage;
       this.stagesTasks[stageId].push(task);
+    }
+  }
+
+  moveTaskBack(taskName) {
+    this.tasks.map((task, index)=>{
+      console.log(task);
+      if(task.name === taskName) {
+        task.stage--;
+      }
+    })
+    this.configureTasksForRendering();
+  }
+
+  moveTaskForward(taskName) {
+    this.tasks.map((task, index)=>{
+      console.log(task);
+      if(task.name === taskName) {
+        task.stage++;
+      }
+    })
+    this.configureTasksForRendering();
+  }
+
+  deleteTask(taskIndex) {
+    this.tasks.splice(taskIndex, 1);
+    this.configureTasksForRendering();
+  }
+
+  addTaskToBoard() {
+    console.log(this.taskNameInput);
+    let trimmedValue = this.taskNameInput.trim();
+    if(trimmedValue && trimmedValue.length>0 && this.taskNames.indexOf(trimmedValue)<0) {
+      this.tasks.push({name: trimmedValue, stage: 0});
+      this.taskNames.push(trimmedValue);
+      this.taskNameInput = '';
+      this.configureTasksForRendering();
+    }
+    else {
+      this.taskNameInput = '';
     }
   }
 
